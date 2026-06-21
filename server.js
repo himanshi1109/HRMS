@@ -70,10 +70,8 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-// Root route
-app.get('/', (req, res) => {
-  res.json({ message: 'HRMS Backend Service API is active.' });
-});
+// Serve static files from the React client build
+app.use(express.static(path.join(__dirname, 'client/dist')));
 
 // Mount Routes
 app.use('/api/auth', require('./src/modules/auth/auth.routes'));
@@ -104,6 +102,11 @@ app.use('/api/reports', require('./src/modules/reports/reports.routes'));
 app.use('/api/ess', require('./src/modules/self-service/ess.routes'));
 app.use('/api/mss', require('./src/modules/self-service/mss.routes'));
 app.use('/api/chat', require('./src/modules/chat/chat.routes'));
+
+// Catch-all route to serve the React index.html for client-side pages
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/dist/index.html'));
+});
 
 // Global Error Handler Middleware
 app.use(errorHandler);
