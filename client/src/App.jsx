@@ -2128,44 +2128,7 @@ const LoginPage = () => {
           <span style={{ color: '#9A9690', fontSize: '13px' }}>Sign in to continue</span>
         </div>
 
-        {/* Google SSO Button */}
-        <button 
-          onClick={() => {
-            toast.error("Google Sign-In is currently disabled. Please use credentials.");
-          }}
-          style={{
-            background: 'rgba(255,255,255,0.10)',
-            border: '1px solid rgba(255,255,255,0.18)',
-            borderRadius: '12px',
-            height: '44px',
-            color: '#F0EBE3',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer',
-            fontWeight: '600',
-            fontSize: '13px',
-            transition: 'background 0.2s',
-            width: '100%'
-          }}
-          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.16)'}
-          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.10)'}
-        >
-          <svg width="18" height="18" viewBox="0 0 18 18" style={{ marginRight: '10px' }}>
-            <path fill="#4285F4" d="M17.64 9.2c0-.63-.06-1.25-.16-1.84H9v3.47h4.84c-.21 1.12-.84 2.07-1.79 2.7v2.24h2.9c1.7-1.57 2.69-3.88 2.69-6.57z" />
-            <path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.23l-2.91-2.24c-.8.54-1.84.87-3.05.87-2.35 0-4.33-1.58-5.04-3.71H.92v2.3C2.4 15.93 5.48 18 9 18z" />
-            <path fill="#FBBC05" d="M3.96 10.7c-.18-.54-.28-1.12-.28-1.7s.1-1.16.28-1.7V5H.92C.33 6.18 0 7.55 0 9s.33 2.82.92 4h3.04l-.92-2.3z" />
-            <path fill="#EA4335" d="M9 3.58c1.32 0 2.5.45 3.44 1.35L15 2.4C13.47.97 11.43 0 9 0 5.48 0 2.4 2.07.92 5v2.3C1.63 5.16 3.61 3.58 9 3.58z" />
-          </svg>
-          Continue with Google
-        </button>
 
-        {/* Divider OR */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', margin: '4px 0' }}>
-          <div style={{ height: '1px', backgroundColor: 'rgba(255,255,255,0.08)', flex: 1 }} />
-          <span style={{ fontSize: '11px', color: '#9A9690', textTransform: 'uppercase' }}>or</span>
-          <div style={{ height: '1px', backgroundColor: 'rgba(255,255,255,0.08)', flex: 1 }} />
-        </div>
 
         {/* Login Form */}
         <form onSubmit={handleSubmit(onSubmit)} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
