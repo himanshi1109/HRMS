@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-page: rgba(10, 9, 8, 0.45); /* Main content area (space between cards) */
+  --text-primary: #D4D0C8; /* All body text */
+  --text-secondary: #9A9690; /* All muted/secondary text */
+  --cream: #F0EBE3; /* All headings: bright cream white */
+  --cream-dark: #F0EBE3;
+  --cream-muted: #9A9690;
+  
+  --glass-card: rgba(20, 18, 16, 0.82);
+  --glass-card-hover: rgba(20, 18, 16, 0.88);
+  --glass-border: rgba(255, 255, 255, 0.12);
+}
+
+body {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  color: var(--text-primary);
+  background: url('/office-bg.jpg') center/cover fixed;
+  background-color: #2C2C2A; /* fallback */
+}
+
+/* Custom Scrollbar for glass theme */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(20, 18, 16, 0.4);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Glassmorphism utility helpers if needed, but we will mostly use inline styles */
+.glass-effect {
+  background: rgba(20, 18, 16, 0.82);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+}
+
+/* Glassmorphism Table Styles */
+tr.glass-row {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  transition: background 0.2s;
+}
+tr.glass-row:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+tr.glass-header-row {
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+table td {
+  color: #E8E4DC !important;
+}
+table th {
+  color: #9A9690 !important;
+}
+
+/* Keyframes for smooth dashboard entry */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 400ms ease forwards;
+}
+
+/* ========================================= */
+/* PREMIUM RESPONSIVE OVERRIDES              */
+/* ========================================= */
+
+/* Fluid Dashboard Grid - Automatically scales columns based on width */
+div[style*="grid-template-columns: repeat(4"],
+div[style*="grid-template-columns: repeat(3"],
+div[style*="gridTemplateColumns: 'repeat(4"],
+div[style*="gridTemplateColumns: 'repeat(3"] {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+  gap: 20px !important;
+}
+
+/* Ensure data tables can scroll smoothly */
+/* Global resets removed to fix desktop layout */
+
+@media screen and (max-width: 768px) {
+  /* Fluid Spacing & Main Wrapper Adjustments */
+  main, div.main-content {
+    margin-left: 0 !important;
+    padding: 16px !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+  
+  /* Smart Grid Collapse: Target grids with gaps (layout grids) and force 1 column */
+  /* This avoids breaking table rows which use grid but have no gaps */
+  div[style*="gap: 16px"],
+  div[style*="gap: '16px'"],
+  div[style*="gap: 20px"],
+  div[style*="gap: '20px'"],
+  div[style*="gap: 24px"],
+  div[style*="gap: '24px'"],
+  div[style*="gap: 32px"],
+  div[style*="gap: '32px'"] {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Prevent flex/grid blowout from wide tables/charts */
+  * {
+    min-width: 0; /* Critical for flex/grid children */
+  }
+  
+  /* Typography Scaling for smaller screens */
+  h1 { font-size: 24px !important; line-height: 1.2 !important; }
+  h2 { font-size: 20px !important; line-height: 1.3 !important; }
+  h3 { font-size: 18px !important; line-height: 1.3 !important; }
+  
+  /* Prevent inputs from overflowing */
+  input, select, textarea {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  /* Hide the fixed desktop sidebar and navbar */
+  .desktop-sidebar, .desktop-navbar {
+    display: none !important;
+  }
+  
+  /* ========================================= */
+  /* LANDING PAGE MOBILE FIXES                   */
+  /* ========================================= */
+  
+  /* Fix header overflowing/wrapping awkwardly */
+  .landing-header {
+    height: auto !important;
+    padding: 14px 20px !important;
+  }
+  
+  .landing-nav,
+  .hide-on-mobile {
+    display: none !important;
+  }
+  
+  /* Make the dashboard mockup horizontally scrollable instead of squeezing */
+  div[style*="maxWidth: '860px'"],
+  div[style*="max-width: 860px"] {
+    overflow-x: auto !important;
+    padding-bottom: 8px !important;
+  }
+  
+  div[style*="maxWidth: '860px'"] > div,
+  div[style*="max-width: 860px"] > div {
+    min-width: 600px !important; /* Force a realistic minimum width for the mockup so it scrolls */
+  }
+  
+  /* ========================================= */
+  /* HR DASHBOARD MOBILE FIXES                 */
+  /* ========================================= */
+  
+  /* Top Row (Greeting + Stats) - Force to single column and allow cards to scroll horizontally */
+  .hr-top-row {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .hr-stat-cards {
+    overflow-x: auto !important;
+    padding-bottom: 8px !important;
+    scrollbar-width: none; /* Hide scrollbar for clean look */
+  }
+  .hr-stat-cards::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .hr-stat-cards > div {
+    min-width: 140px !important; /* Give each metric card enough width */
+  }
+  
+
+  
+  /* Today's Attendance circles - allow them to wrap or scale if needed */
+  div[style*="Today's Attendance"] + div {
+    flex-wrap: wrap !important;
+  }
+  
+  /* Dynamic Flex Adjustments - Only wrap, do not force columns blindly */
+  header, .page-header {
+    flex-wrap: wrap !important;
+    gap: 12px !important;
+  }
+}
+
+/* ========================================= */
+/* MOBILE NAVIGATION (PREMIUM GLASSMORPHISM) */
+/* ========================================= */
+
+.mobile-header {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .mobile-header {
+    display: flex !important;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(14, 12, 11, 0.85); /* Richer dark tone */
+    backdrop-filter: saturate(180%) blur(24px);
+    -webkit-backdrop-filter: saturate(180%) blur(24px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 14px 20px;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Smooth slide-out mobile sidebar */
+  .mobile-sidebar-open {
+    display: flex !important;
+    width: 280px !important;
+    z-index: 9999 !important;
+    background: rgba(18, 16, 14, 0.96) !important;
+    backdrop-filter: blur(40px) !important;
+    -webkit-backdrop-filter: blur(40px) !important;
+    box-shadow: 8px 0 60px rgba(0, 0, 0, 0.6) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+    transform: translateX(0);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  }
+  
+  /* Initial hidden state for animation (optional if relying purely on conditional rendering, 
+     but good for entering transitions) */
+  .desktop-sidebar.animating {
+    transform: translateX(-100%);
+  }
+}
