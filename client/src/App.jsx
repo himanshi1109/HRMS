@@ -2242,19 +2242,7 @@ const LoginPage = () => {
           New to Workly? Contact your administrator
         </span>
 
-        {/* Demo credentials hint */}
-        <div style={{
-          background: 'rgba(255,255,255,0.04)',
-          border: '1px solid rgba(255,255,255,0.08)',
-          borderRadius: '10px',
-          padding: '12px 14px',
-          fontSize: '11px',
-          color: '#6A6865',
-          lineHeight: '1.6'
-        }}>
-          <span style={{ fontWeight: '700', color: '#9A9690', display: 'block', marginBottom: '4px' }}>Demo Credentials</span>
-          <span style={{ display: 'block' }}>HR Admin: <span style={{ color: '#C8C4BC' }}>hr@acme.com / Admin@1234</span></span>
-        </div>
+
       </div>
     </div>
   );
